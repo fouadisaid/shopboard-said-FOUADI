@@ -1,0 +1,16 @@
+<div class="produit-list">
+  <h2>Nos produits</h2>
+
+  @if (produits().length === 0) {
+    <p>Aucun produit disponible.</p>
+  } @else {
+    @for (produit of produits(); track produit.id) {
+      <div class="produit-card">
+        <h3>{{ produit.nom }}</h3>
+        <p>Prix : {{ produit.prix }} XOF</p>
+        <p>Stock : {{ produit.stock }}</p>
+        <p>Catégorie : {{ produit.categorie }}</p>
+      </div>
+    }
+  }
+</div>

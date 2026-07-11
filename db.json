@@ -1,0 +1,8 @@
+{
+  "produits": [
+    { "id": "1", "nom": "Laptop Pro", "prix": 850000, "stock": 12, "categorie": "Informatique" },
+    { "id": "2", "nom": "Casque Audio", "prix": 45000, "stock": 30, "categorie": "Accessoires" },
+    { "id": "3", "nom": "Souris Ergonomique", "prix": 22000, "stock": 0, "categorie": "Accessoires" },
+    { "id": "4", "nom": "Tablette Graphique", "prix": 135000, "stock": 5, "categorie": "Informatique" }
+  ]
+}
