@@ -1,0 +1,26 @@
+<ul class="nav-links">
+  <li>
+    <button
+      type="button"
+      [class.active]="lienActif() === 'accueil'"
+      (click)="changerLienActif('accueil')">
+      Accueil
+    </button>
+  </li>
+  <li>
+    <button
+      type="button"
+      [class.active]="lienActif() === 'produits'"
+      (click)="changerLienActif('produits')">
+      Produits
+    </button>
+  </li>
+  <li>
+    <button
+      type="button"
+      [class.active]="lienActif() === 'panier'"
+      (click)="changerLienActif('panier')">
+      Panier
+    </button>
+  </li>
+</ul>
