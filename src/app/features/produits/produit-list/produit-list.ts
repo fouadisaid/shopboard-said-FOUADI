@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ProduitService } from '../../../core/services/produit';
+import { toProduitVm } from '../../../shared/utils/mappers';
 
 @Component({
   selector: 'app-produit-list',
@@ -12,5 +13,7 @@ import { ProduitService } from '../../../core/services/produit';
 export class ProduitList {
   private produitService = inject(ProduitService);
 
-  produits = toSignal(this.produitService.getAll(), { initialValue: [] });
+  private produitsDto = toSignal(this.produitService.getAll(), { initialValue: [] });
+
+  produits = computed(() => this.produitsDto().map(toProduitVm));
 }

@@ -5,11 +5,18 @@
     <p>Aucun produit disponible.</p>
   } @else {
     @for (produit of produits(); track produit.id) {
-      <div class="produit-card">
+      <!-- <div class="produit-card">
         <h3>{{ produit.nom }}</h3>
         <p>Prix : {{ produit.prix }} XOF</p>
         <p>Stock : {{ produit.stock }}</p>
         <p>Catégorie : {{ produit.categorie }}</p>
+      </div> -->
+
+      <div class="produit-card">
+        <h3>{{ produit.nom }}</h3>
+        <p>Prix : {{ produit.prixFormate }}</p>
+        <p>Ajouté le : {{ produit.dateAjout }}</p>
+        <span class="badge">{{ produit.badgeStatut }}</span>
       </div>
     }
   }
