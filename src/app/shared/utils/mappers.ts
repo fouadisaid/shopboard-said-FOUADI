@@ -4,11 +4,13 @@ import { ProduitVm } from '../../core/models/produit.vm';
 export function toProduitVm(dto: ProduitDto): ProduitVm {
   const stock = dto.stock ?? 0;
 
+  const prixNumerique = dto.prix / 100;
+
   const prixFormate = new Intl.NumberFormat('fr-SN', {
     style: 'currency',
     currency: 'XOF',
     maximumFractionDigits: 0,
-  }).format(dto.prix / 100);
+  }).format(prixNumerique);
 
   const dateAjout = new Date(dto.created_at).toLocaleDateString('fr-SN');
 
@@ -24,6 +26,7 @@ export function toProduitVm(dto: ProduitDto): ProduitVm {
   return {
     id: dto.id,
     nom: dto.nom,
+    prix: prixNumerique,
     prixFormate,
     estDisponible: stock > 0,
     dateAjout,
