@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProduitVm } from '../../../core/models/produit.vm';
 
 @Component({
@@ -9,11 +10,16 @@ import { ProduitVm } from '../../../core/models/produit.vm';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProduitCard {
-  produit = input.required<ProduitVm>();
+  private router = inject(Router);
 
+  produit = input.required<ProduitVm>();
   ajouterAuPanier = output<ProduitVm>();
 
   onAjouter(): void {
     this.ajouterAuPanier.emit(this.produit());
+  }
+
+  voirDetail(): void {
+    this.router.navigate(['/produits', this.produit().id]);
   }
 }

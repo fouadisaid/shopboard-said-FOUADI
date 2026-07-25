@@ -80,3 +80,43 @@ Un générique évite de dupliquer l'interface pour chaque type de données (pro
 
 **Ex 4.2 — Pourquoi `_articles.asReadonly()` plutôt que `_articles` direct ?**
 Exposer le signal brut permettrait à n'importe quel composant d'appeler `.set()`/`.update()` depuis l'extérieur, cassant l'encapsulation. `asReadonly()` retourne une vue en lecture seule : les composants lisent l'état (`articles()`) mais seul le service, via ses méthodes publiques (`ajouter`, `retirer`, `vider`), peut le modifier.
+
+## Séance 5
+
+**Ex 5.1 — Template A (@if/@else)**
+​`html
+@if (isLoading) {
+  <app-spinner></app-spinner>
+} @else {
+  <app-produit-list [produits]="produits"></app-produit-list>
+}
+​`
+
+**Ex 5.1 — Template B (@for/@empty)**
+​```html
+@for (p of produits; track p.id) {
+<app-produit-card
+[produit]="p"
+(ajouterAuPanier)="onAjout($event)">
+</app-produit-card>
+} @empty {
+  <p>Aucun produit</p>
+}
+​```
+
+**Ex 5.1 — Template C (@switch)**
+​`html
+@switch (produit.badgeStatut) {
+  @case ('En stock') {
+    <span class="badge badge-vert">En stock</span>
+  }
+  @case ('Stock faible') {
+    <span class="badge badge-orange">Stock faible</span>
+  }
+  @case ('Rupture') {
+    <span class="badge badge-rouge">Rupture</span>
+  }
+}
+​`
+**Ex 5.3 — Différence [routerLink] vs router.navigate() ?**
+`[routerLink]` s'utilise dans le template HTML sur un élément cliquable — Angular gère nativement l'accessibilité (lien réel, Ctrl+clic, URL affichée au survol). `router.navigate()` s'utilise en TypeScript quand la navigation dépend d'une logique métier (validation, réponse API, clic sur un élément non-lien). Règle générale : `[routerLink]` pour les liens statiques, `router.navigate()` pour la navigation conditionnelle/programmatique.

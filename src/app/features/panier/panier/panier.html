@@ -1,0 +1,18 @@
+<div class="panier">
+  <h2>Mon panier</h2>
+
+  @if (panierService.articles().length === 0) {
+    <p>Votre panier est vide.</p>
+  } @else {
+    @for (article of panierService.articles(); track article.produit.id) {
+      <div class="panier-ligne">
+        <span>{{ article.produit.nom }}</span>
+        <span>x{{ article.quantite }}</span>
+        <span>{{ article.produit.prixFormate }}</span>
+      </div>
+    }
+    <p>Total : {{ panierService.totalFormate() }}</p>
+  }
+
+  <button type="button" (click)="continuerAchats()">Continuer les achats</button>
+</div>

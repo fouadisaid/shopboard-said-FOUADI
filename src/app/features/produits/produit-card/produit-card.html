@@ -1,5 +1,5 @@
 <div class="produit-card">
-  <h3>{{ produit().nom }}</h3>
+  <h3 (click)="voirDetail()" style="cursor: pointer;">{{ produit().nom }}</h3>
   <p>Prix : {{ produit().prixFormate }}</p>
   <p>Ajouté le : {{ produit().dateAjout }}</p>
   <span class="badge">{{ produit().badgeStatut }}</span>
